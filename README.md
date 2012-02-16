@@ -1,1 +1,3 @@
-# A simple social document sharing app
+# raindrop docs
+ 
+A simple social document sharing app
