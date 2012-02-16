@@ -16,3 +16,5 @@ body {
   background-position: 0 -180px;
 }
 h1 { padding:0 40px 10px 0;}
+
+.clear { clear:both }

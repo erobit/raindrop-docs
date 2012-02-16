@@ -41,12 +41,16 @@
 
 	<div class="container content">
 		<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large pull-right"><span class="icon-plus icon-white"></span> </a>
-		<h1><img src="img/paperclip.png"/> docs</h1>
-		<div id="groups" class="tab-pane">
+		<h1 class="pull-left"><img src="img/paperclip.png"/> docs</h1>
+		<form class="form-search pull-left">
+	        <input type="text" class="input-medium search-query">
+	        <button type="submit" class="btn">Search</button>
+	      </form>
+		<div id="groups" class="tab-pane clear">
 			<div class="tabbable tabs-left">
 				<ul class="nav nav-tabs">
-					<li><a href="#" data-toggle="tab">Books</a></li>
-					<li class="active"><a href="#" data-toggle="tab">Movies</a></li>
+					<li class="active"><a href="#" data-toggle="tab">Books</a></li>
+					<li><a href="#" data-toggle="tab">Movies</a></li>
 					<li><a href="#" data-toggle="tab">Photos</a></li>
 					<li><a href="work" data-toggle="tab">Misc</a></li>
 				</ul>
