@@ -1,3 +1,1 @@
-
-Simple web app for organizing your file collection online
-
+# A simple social document sharing app
