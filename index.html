@@ -84,11 +84,19 @@
 		<div id="myModal" class="modal hide">
 		  <div class="modal-header">
 		    <a class="close" data-dismiss="modal">x</a>
-		    <h3>Add documents</h3>
+		    <h2>Add documents</h2>
 		  </div>
 		  <div class="modal-body">
 		   	<input type="file" id="files" name="files[]" multiple />
 				<output id="list"></output>
+				
+				<h3>Todo</h3>
+				<ul>
+					<li>Ability to select files from disk</li>
+					<li>Show selected files in list - create backbone File objects with set("data")</li>
+					<li>Ability to expand each file and add meta data (smart assoc - if cover art is already present with same name as file)</li>
+					<li>Save document to database along with attachment(s) - data w/ cover art</li>
+				</ul>
 		  </div>
 		  <div class="modal-footer">
 				<a href="#" class="btn" data-dismiss="modal">Close</a>
