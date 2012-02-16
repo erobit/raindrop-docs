@@ -39,15 +39,20 @@
 	</div>
 		-->
 
-	<div class="container content">
+	<div class="container">
 		<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large pull-right"><span class="icon-plus icon-white"></span> </a>
-		<h1 class="pull-left"><img src="img/paperclip.png"/> docs</h1>
-		<form class="form-search pull-left">
-	        <input type="text" class="input-medium search-query">
-	        <button type="submit" class="btn">Search</button>
-	      </form>
-		<div id="groups" class="tab-pane clear">
-			<div class="tabbable tabs-left">
+		<div class="span2">
+			<h1 class="pull-right"><img src="img/paperclip.png"/> docs</h1>
+		</div>
+		<form class="form-search span4">
+			<input type="text" class="input-medium search-query">
+			<button type="submit" class="btn">Search</button>
+		</form>
+		
+	</div>
+	<div class="container">
+		<div id="groups" class="tab-pane clear span2">
+			<div class="tabbable tabs-left pull-right">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#" data-toggle="tab">Books</a></li>
 					<li><a href="#" data-toggle="tab">Movies</a></li>
@@ -56,11 +61,27 @@
 				</ul>
 			</div>
 		</div>
-		
+		<div class="span9">
+			<ul class="nav nav-pills">
+			  <li class="active">
+			    <a href="#">Classical</a>
+			  </li>
+			  <li><a href="#">Comedy</a></li>
+			  <li><a href="#">Economy</a></li>
+			</ul>
+			<h2>Todo</h2>
+			<ul>
+				<li>Add file upload capability - test adding as attachments in couchdb</li>
+				<li>Create backbone models for Tabs, Document, Documents</li>
+				<li>Create backbone router/views and controllers to manage clicks/rendering</li>
+				<li>Add tag nav-pills</li>
+			</ul>
+		</div>
+	</div>
 		<div id="myModal" class="modal hide">
 		  <div class="modal-header">
 		    <a class="close" data-dismiss="modal">x</a>
-		    <h3>Add files</h3>
+		    <h3>Add documents</h3>
 		  </div>
 		  <div class="modal-body">
 		   	<input type="file" id="files" name="files[]" multiple />
@@ -68,10 +89,9 @@
 		  </div>
 		  <div class="modal-footer">
 				<a href="#" class="btn" data-dismiss="modal">Close</a>
-		    <a href="#" class="btn btn-primary">Add documents</a>
+		    <a href="#" class="btn btn-primary">Save</a>
 		  </div>
 		</div>
-				
 	</div>
 	<!-- load scripts at the end for performance reasons 
 				- tried to use requirejs but didn't work  -->
