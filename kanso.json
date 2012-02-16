@@ -1,0 +1,13 @@
+{
+	"name": "raindrop-docs",
+	"version": "2.0.0",
+	"description": "Raindrop docs - A social document sharing app",
+	"attachments": [
+		"css",
+		"img",
+		"js"
+	],
+	"dependencies" : {
+		"attachments": null
+	}
+}

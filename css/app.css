@@ -1,0 +1,18 @@
+/* Add additional stylesheets below
+-------------------------------------------------- */
+/*
+  Bootstrap's documentation styles
+  Special styles for presenting Bootstrap's documentation and examples
+*/
+
+
+/* Body and structure
+-------------------------------------------------- */
+body {
+  padding-top: 20px;
+  background-color: #fff;
+  background-image: url(../img/grid-18px-masked.png);
+  background-repeat: repeat-x;
+  background-position: 0 -180px;
+}
+h1 { padding:0 40px 10px 0;}
