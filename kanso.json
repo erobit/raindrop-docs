@@ -5,7 +5,8 @@
 	"attachments": [
 		"css",
 		"img",
-		"js"
+		"js",
+		"index.html"
 	],
 	"dependencies" : {
 		"attachments": null
