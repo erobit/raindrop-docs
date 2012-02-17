@@ -1,7 +1,9 @@
 $(function(){
 	
 	var Doc = Backbone.Model.extend({});
-	var Docs = Backbone.Collection.extend({});
+	var Docs = Backbone.Collection.extend({
+		model: Doc
+	});
 	var DocView = Backbone.View.extend({
 		el : $('#docs'),
 		events : {
@@ -14,15 +16,33 @@ $(function(){
 			
 		}
 	});
+	
+	var Uploads = Backbone.Collection.extend({
+		model: Doc
+	});
+	var UploadView = Backbone.View.extend({
+		el: $('#uploads'),
+		events: {
+			
+		},
+		initialize: function() {
+			
+		},
+		render: function() {
+			
+		}
+	});
 
 	var Tab = Backbone.Model.extend({});
-	var Tabs = Backbone.Collection.extend({});
+	var Tabs = Backbone.Collection.extend({
+		model: Tab
+	});
 	var TabView = Backbone.View.extend({
 		el : $('#tabs'),
 		events : {
 			
 		},
-		initialize : {
+		initialize : function() {
 			
 		},
 		render: function() {
@@ -31,13 +51,15 @@ $(function(){
 	});
 
 	var Tag = Backbone.Model.extend({});
-	var Tags = Backbone.Collection.extend({});
+	var Tags = Backbone.Collection.extend({
+		model: Tag
+	});
 	var TagView = Backbone.View.extend({
 		el : $('#tags'),
 		events : {
 			
 		},
-		initialize : {
+		initialize : function() {
 			
 		},
 		render: function() {
@@ -59,6 +81,7 @@ $(function(){
 		},
 		search: function() {
 			alert('w00t - backbone event!!!');
+			return false;
 		}
 	});
 	window.App = new AppView;
