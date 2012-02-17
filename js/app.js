@@ -44,10 +44,18 @@ $(function(){
 			
 		},
 		initialize : function() {
-			this.render();
+			var tabs = new Tabs;
+			tabs.add([
+				{ title: "Books", active: true },
+				{ title: "Movies", active: false },
+				{ title: "Photos", active: false },
+				{ title: "Misc", active: false }
+			]);
+			this.render(tabs);
 		},
-		render: function() {
-			var html = _.template(this.template, {});
+		render: function(tabs) {
+			var template = Handlebars.compile(this.template);
+			var html = template({ tabs: tabs.toJSON() });
 			$(this.el).html(html);
 		}
 	});
