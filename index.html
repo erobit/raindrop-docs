@@ -16,6 +16,7 @@
 	-->
 </head>
 <body>
+<a href="http://github.com/erobit/raindrop-docs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
 	<div id="raindrop">
 		<div class="container">
 			<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large pull-right"><span class="icon-plus icon-white"></span> </a>
@@ -28,27 +29,33 @@
 			</form>
 		</div>
 		<div class="container">
-			<div id="groups" class="tab-pane span2">
-				<div class="tabbable tabs-left pull-right">
-					<ul class="nav nav-tabs">
-						<li class="active"><a href="#" data-toggle="tab">Books</a></li>
-						<li><a href="#" data-toggle="tab">Movies</a></li>
-						<li><a href="#" data-toggle="tab">Photos</a></li>
-						<li><a href="#" data-toggle="tab">Misc</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="span9">
-				<div id="groups" class="tab-pane">
-					<div class="tabbable">
-						<ul class="nav nav-pills">
-							<li class="active"><a href="#private" data-toggle="tab">Personal</a></li>
-							<li class=""><a href="#friends" data-toggle="tab">Friends</a></li>
-							<li class=""><a href="#family" data-toggle="tab">Family</a></li>
-							<li><a href="work" data-toggle="tab">Work</a></li>
+			<div id="tabs"></div>
+			<script type="text/template" id="tabs-template">
+				<div id="groups" class="tab-pane span2">
+					<div class="tabbable tabs-left pull-right">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#" data-toggle="tab">Books</a></li>
+							<li><a href="#" data-toggle="tab">Movies</a></li>
+							<li><a href="#" data-toggle="tab">Photos</a></li>
+							<li><a href="#" data-toggle="tab">Misc</a></li>
 						</ul>
 					</div>
 				</div>
+			</script>
+			
+			<div class="span9">
+				<script type="text/template" id="tags">
+					<div id="groups" class="tab-pane">
+						<div class="tabbable">
+							<ul class="nav nav-pills">
+								<li class="active"><a href="#private" data-toggle="tab">Personal</a></li>
+								<li class=""><a href="#friends" data-toggle="tab">Friends</a></li>
+								<li class=""><a href="#family" data-toggle="tab">Family</a></li>
+								<li><a href="work" data-toggle="tab">Work</a></li>
+							</ul>
+						</div>
+					</div>
+				</script>
 				<h2>Todo</h2>
 				<ul>
 					<li>Add initial app init / render</li>

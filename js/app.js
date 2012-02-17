@@ -38,15 +38,17 @@ $(function(){
 		model: Tab
 	});
 	var TabView = Backbone.View.extend({
-		el : $('#tabs'),
-		events : {
+		el: $('#tabs'),
+		template: $('#tabs-template').html(),
+		events: {
 			
 		},
 		initialize : function() {
-			
+			this.render();
 		},
 		render: function() {
-			
+			var html = _.template(this.template, {});
+			$(this.el).html(html);
 		}
 	});
 
@@ -74,7 +76,7 @@ $(function(){
 			"click form#search button":  "search"
 		},
 		initialize: function() {
-			
+			window.Tabs = new TabView;
 		},
 		render: function() {
 			
