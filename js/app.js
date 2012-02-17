@@ -1,5 +1,50 @@
 $(function(){
 	
+	var Doc = Backbone.Model.extend({});
+	var Docs = Backbone.Collection.extend({});
+	var DocView = Backbone.View.extend({
+		el : $('#docs'),
+		events : {
+			
+		},
+		initialize : {
+			
+		},
+		render: function() {
+			
+		}
+	});
+
+	var Tab = Backbone.Model.extend({});
+	var Tabs = Backbone.Collection.extend({});
+	var TabView = Backbone.View.extend({
+		el : $('#tabs'),
+		events : {
+			
+		},
+		initialize : {
+			
+		},
+		render: function() {
+			
+		}
+	});
+
+	var Tag = Backbone.Model.extend({});
+	var Tags = Backbone.Collection.extend({});
+	var TagView = Backbone.View.extend({
+		el : $('#tags'),
+		events : {
+			
+		},
+		initialize : {
+			
+		},
+		render: function() {
+			
+		}
+	});
+	
 	// Main application view
 	window.AppView = Backbone.View.extend({
 		el: $('#raindrop'),
@@ -25,14 +70,7 @@ $(function(){
 	// if local storage doesn't exist - persist as cookie on localhost?
 	// or no persistence - have to authenticate and provide db every time
 
-	var Doc = Backbone.Model.extend({});
-	var Docs = Backbone.Collection.extend({});
 
-	var Tab = Backbone.Model.extend({});
-	var Tabs = Backbone.Collection.extend({});
-
-	var Tag = Backbone.Model.extend({});
-	var Tags = Backbone.Collection.extend({});
 
 	function uploadFiles(e) {
 		$.each( e.target.files, function(index, file) {
