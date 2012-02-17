@@ -1,22 +1,39 @@
-$(document).ready(function(){
+$(function(){
 	
-	
-		
-	var Doc = Backbone.Model.extend({
-	  defaults: {
-			"created": new Date().valueOf()		
-	  }
+	// Main application view
+	window.AppView = Backbone.View.extend({
+		el: $('#raindrop'),
+		events: {
+			"click form#search button":  "search"
+		},
+		initialize: function() {
+			
+		},
+		render: function() {
+			
+		},
+		search: function() {
+			alert('w00t - backbone event!!!');
+		}
 	});
+	window.App = new AppView;
 	
-	var DocList = Backbone.Collection.extend({
-		model: Doc
-	});
+	// on initialize - should get/set - db (localStorage)
 	
+	// modal prompt if necessary
 	
-	window.Docs = new DocList().add(new Doc());
-	
+	// if local storage doesn't exist - persist as cookie on localhost?
+	// or no persistence - have to authenticate and provide db every time
 
-	
+	var Doc = Backbone.Model.extend({});
+	var Docs = Backbone.Collection.extend({});
+
+	var Tab = Backbone.Model.extend({});
+	var Tabs = Backbone.Collection.extend({});
+
+	var Tag = Backbone.Model.extend({});
+	var Tags = Backbone.Collection.extend({});
+
 	function uploadFiles(e) {
 		$.each( e.target.files, function(index, file) {
 			var fileReader = new FileReader();

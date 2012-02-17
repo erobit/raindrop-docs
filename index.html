@@ -16,98 +16,75 @@
 	-->
 </head>
 <body>
-		<!--
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<a data-toggle="collapse" data-target=".nav-collapse" class="btn btn-navbar"></a>
-				<a href="#/" class="brand">Raindrop</a>
-				<div class="nav-collapse">
-					<ul class="nav">
-						<li><a href="./index.html">Raindrop</a></li>
-						<li><a href="#/contacts">Contacts</a></li>
-						<li><a href="#/chat">Chat</a></li>
-						<li><a href="#/photos">Photos</a></li>
-						<li><a href="#/events">Events</a></li>
-					</ul>
-				</div>
-				<form class="navbar-search">
-				  <input type="text" class="search-query" placeholder="Search">
-				</form>
+	<div id="raindrop">
+		<div class="container">
+			<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large pull-right"><span class="icon-plus icon-white"></span> </a>
+			<div class="span2">
+				<h1 class="pull-right"><img src="img/paperclip.png"/> docs</h1>
 			</div>
+			<form id="search" class="form-search span4">
+				<input type="text" class="input-medium search-query">
+				<button type="submit" class="btn">Search</button>
+			</form>
 		</div>
-	</div>
-		-->
-
-	<div class="container">
-		<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large pull-right"><span class="icon-plus icon-white"></span> </a>
-		<div class="span2">
-			<h1 class="pull-right"><img src="img/paperclip.png"/> docs</h1>
-		</div>
-		<form class="form-search span4">
-			<input type="text" class="input-medium search-query">
-			<button type="submit" class="btn">Search</button>
-		</form>
-		
-	</div>
-	<div class="container">
-		<div id="groups" class="tab-pane span2">
-			<div class="tabbable tabs-left pull-right">
-				<ul class="nav nav-tabs">
-					<li class="active"><a href="#" data-toggle="tab">Books</a></li>
-					<li><a href="#" data-toggle="tab">Movies</a></li>
-					<li><a href="#" data-toggle="tab">Photos</a></li>
-					<li><a href="#" data-toggle="tab">Misc</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="span9">
-			<div id="groups" class="tab-pane">
-				<div class="tabbable">
-					<ul class="nav nav-pills">
-						<li class="active"><a href="#private" data-toggle="tab">Personal</a></li>
-						<li class=""><a href="#friends" data-toggle="tab">Friends</a></li>
-						<li class=""><a href="#family" data-toggle="tab">Family</a></li>
-						<li><a href="work" data-toggle="tab">Work</a></li>
+		<div class="container">
+			<div id="groups" class="tab-pane span2">
+				<div class="tabbable tabs-left pull-right">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#" data-toggle="tab">Books</a></li>
+						<li><a href="#" data-toggle="tab">Movies</a></li>
+						<li><a href="#" data-toggle="tab">Photos</a></li>
+						<li><a href="#" data-toggle="tab">Misc</a></li>
 					</ul>
 				</div>
 			</div>
-			<h2>Todo</h2>
-			<ul>
-				<li>Add file upload capability - test adding as attachments in couchdb</li>
-				<li>Create backbone models for Tab, Tabs, Doc, Docs</li>
-				<li>Create backbone router/views and controllers to manage clicks/rendering</li>
-				<li>Create couch query methods to return data for Tabs, Docs, Tags</li>
-				<li>Add code to render Tabs, Tags along with click events to change ui</li>
-				<li>Add app setup - check if db exists - can we use localstorage to store db name/user/pass? - render modal on first app load - ability to clone another node?</li>
-			</ul>
-		</div>
-	</div>
-		<div id="myModal" class="modal hide">
-		  <div class="modal-header">
-		    <a class="close" data-dismiss="modal">x</a>
-		    <h2>Add documents</h2>
-		  </div>
-		  <div class="modal-body">
-		   	<input type="file" id="files" name="files[]" multiple />
-				<output id="list"></output>
-				
-				<h3>Todo</h3>
+			<div class="span9">
+				<div id="groups" class="tab-pane">
+					<div class="tabbable">
+						<ul class="nav nav-pills">
+							<li class="active"><a href="#private" data-toggle="tab">Personal</a></li>
+							<li class=""><a href="#friends" data-toggle="tab">Friends</a></li>
+							<li class=""><a href="#family" data-toggle="tab">Family</a></li>
+							<li><a href="work" data-toggle="tab">Work</a></li>
+						</ul>
+					</div>
+				</div>
+				<h2>Todo</h2>
 				<ul>
-					<li>Ability to select files from disk</li>
-					<li>Show selected files in list - create backbone File objects with set("data")</li>
-					<li>Ability to expand each file and add meta data (smart assoc - if cover art is already present with same name as file)</li>
-					<li>Save document to database along with attachment(s) - data w/ cover art</li>
+					<li>Add file upload capability - test adding as attachments in couchdb</li>
+					<li>Create backbone models for Tab, Tabs, Doc, Docs</li>
+					<li>Create backbone router/views and controllers to manage clicks/rendering</li>
+					<li>Create couch query methods to return data for Tabs, Docs, Tags</li>
+					<li>Add code to render Tabs, Tags along with click events to change ui</li>
+					<li>Add app setup - check if db exists - can we use localstorage to store db name/user/pass? - render modal on first app load - ability to clone another node?</li>
 				</ul>
-		  </div>
-		  <div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">Close</a>
-		    <a href="#" class="btn btn-primary">Save</a>
-		  </div>
+			</div>
+		</div>
+			<div id="myModal" class="modal hide">
+			  <div class="modal-header">
+			    <a class="close" data-dismiss="modal">x</a>
+			    <h2>Add documents</h2>
+			  </div>
+			  <div class="modal-body">
+			   	<input type="file" id="files" name="files[]" multiple />
+					<output id="list"></output>
+				
+					<h3>Todo</h3>
+					<ul>
+						<li>Ability to select files from disk</li>
+						<li>Show selected files in list - create backbone File objects with set("data")</li>
+						<li>Ability to expand each file and add meta data (smart assoc - if cover art is already present with same name as file)</li>
+						<li>Save document to database along with attachment(s) - data w/ cover art</li>
+					</ul>
+			  </div>
+			  <div class="modal-footer">
+					<a href="#" class="btn" data-dismiss="modal">Close</a>
+			    <a href="#" class="btn btn-primary">Save</a>
+			  </div>
+			</div>
 		</div>
 	</div>
-	<!-- load scripts at the end for performance reasons 
-				- tried to use requirejs but didn't work  -->
+	<!-- load scripts at end for performance -->
 	<script src="js/lib/jquery.js"></script>
 	<script src="js/lib/jquery.couch.js"></script>
 	<script src="js/lib/bootstrap.js"></script>
