@@ -81,11 +81,14 @@
 			<div class="span12">	
 				<h2>Todo</h2>
 				<ul>
-					<li>Add initial app init / render</li>
-					<li>Show modal to choose db if none is in localStorage</li>
-					<li>Create couch query methods to return data for Tabs, Docs, Tags</li>
-					<li>Init and render objects - Tabs - search / add button if db exists</li>
-					<li>changeTab(0) on initial load - initial load should have first tab/by_tag as key</li>
+					<li>Add some sample docs so that we can test basic map/reduce</li>
+					<li>Create couchdb map &amp; reduce views to render tabs / tags</li>
+					<li>Configure app initialize to check for localStorage - servername if running from file://</li>
+					<li>Configure app to have a global $.couch.db object hooked up to the proper db</li>
+					<li>Configure model objects to have urls - which map to couchdb views - tabs, tags?key=tab</li>
+					<li>Tags render when tabs change</li>
+					<li>Simple meta data - listing for sample docs - cover art</li>
+					<li>Ability to add / upload documents to couch</li>
 				</ul>
 			</div>
 		</div>
