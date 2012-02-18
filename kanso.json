@@ -9,6 +9,7 @@
 		"index.html"
 	],
 	"dependencies" : {
-		"attachments": null
+		"attachments": null,
+		"properties": null
 	}
 }
