@@ -16,36 +16,49 @@
 	-->
 </head>
 <body>
-<a href="http://github.com/erobit/raindrop-docs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
-	<div id="raindrop">
-		<div class="container">
-			<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large pull-right"><span class="icon-plus icon-white"></span> </a>
+<!--
+<a href="http://github.com/erobit/raindrop-docs" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+-->
+	<div class="container">
+		
+		<!-- header row -->
+		<div class="row">
 			<div class="span2">
 				<h1><img src="img/paperclip.png"/> docs</h1>
 			</div>
-			<form id="search" class="form-search span4">
-				<input type="text" class="input-medium search-query">
-				<button type="submit" class="btn">Search</button>
-			</form>
+			<div class="span10">
+				<form id="search" class="form-search">
+					<input type="text" class="input-medium search-query">
+					<button type="submit" class="btn">Search</button>
+				</form>
+			</div>
 		</div>
-		<div class="container">
-			<div id="tabs"></div>
-			<script id="tabs-template" type="text/x-handlebars-template">
-				<div id="groups" class="tab-pane span12">
-					<div class="tabbable">
-						<ul class="nav nav-tabs">
-							{{#each tabs }}
-								{{#if active}}
-									<li class="active"><a href="#" data-toggle="tab">{{ title }}</a></li>
-								{{else}}
-									<li><a href="#" data-toggle="tab">{{ title }}</a></li>
-								{{/if}}
-						  {{/each}}
-						</ul>
+
+		<!-- tabs row -->
+		<div class="row">
+			<div class="span12">
+				<div id="tabs"></div>
+				<script id="tabs-template" type="text/x-handlebars-template">
+					<div class="tab-pane">
+						<div class="tabbable">
+							<ul class="nav nav-tabs">
+								{{#each tabs}}
+									{{#if active}}
+										<li class="active"><a href="#" data-toggle="tab">{{ title }}</a></li>
+									{{else}}
+										<li><a href="#" data-toggle="tab">{{ title }}</a></li>
+									{{/if}}
+							  {{/each}}
+							</ul>
+						</div>
 					</div>
-				</div>
-			</script>
-			
+				</script>
+			</div>
+		</div>
+		
+		<!-- actions & tags row -->
+		<div class="row">
+			<a data-toggle="modal" href="#myModal" class="btn pull-right"><span class="icon-plus"></span> books</a>
 			<div class="span12">
 				<script id="tags" type="text/x-handlebars-template">
 					<div id="groups" class="tab-pane">
@@ -59,6 +72,13 @@
 						</div>
 					</div>
 				</script>
+				&nbsp;
+			</div>
+		</div>
+		
+		<!-- content row -->
+		<div class="row">
+			<div class="span12">	
 				<h2>Todo</h2>
 				<ul>
 					<li>Add initial app init / render</li>
@@ -69,33 +89,33 @@
 				</ul>
 			</div>
 		</div>
-			<div id="myModal" class="modal hide fade">
-			  <div class="modal-header">
-			    <a class="close" data-dismiss="modal">x</a>
-			    <h2>Add documents</h2>
-			  </div>
-			  <div class="modal-body">
-			   	<input type="file" id="files" name="files[]" multiple />
-					<output id="list"></output>
-				
-					<h3>Todo</h3>
-					<ul>
-						<li>Ability to select files from disk</li>
-						<li>Create backbone Doc objects and populate data / cover / url - guuid?</li>
-						<li>Ability to expand each file and add meta data (smart assoc - if cover art is already present with same name as file)</li>
-						<li>Save Doc to db along with data / cover as attachments</li>
-						<li>Show upload status -> progressbars?</li>
-						<li>Add Doc to Docs collection as uploads finish and update ui - cover art/url</li>
-					</ul>
-			  </div>
-			  <div class="modal-footer">
-					<a href="#" class="btn" data-dismiss="modal">Close</a>
-			    <a href="#" class="btn btn-primary">Save</a>
-			  </div>
-			</div>
-		</div>
 	</div>
-	<!-- load scripts at end for performance -->
+	
+	<!-- modal : I would like to remove modals and use content views instead - more realestate -->
+	<div id="myModal" class="modal hide fade">
+	  <div class="modal-header">
+	    <a class="close" data-dismiss="modal">x</a>
+	    <h2>Add documents</h2>
+	  </div>
+	  <div class="modal-body">
+	   	<input type="file" id="files" name="files[]" multiple />
+			<output id="list"></output>
+			<h3>Todo</h3>
+			<ul>
+				<li>Ability to select files from disk</li>
+				<li>Create backbone Doc objects and populate data / cover / url - guuid?</li>
+				<li>Ability to expand each file and add meta data (smart assoc - if cover art is already present with same name as file)</li>
+				<li>Save Doc to db along with data / cover as attachments</li>
+				<li>Show upload status -> progressbars?</li>
+				<li>Add Doc to Docs collection as uploads finish and update ui - cover art/url</li>
+			</ul>
+	  </div>
+	  <div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">Close</a>
+	    <a href="#" class="btn btn-primary">Save</a>
+	  </div>
+	</div>
+
 	<script src="js/lib/jquery.js"></script>
 	<script src="js/lib/jquery.couch.js"></script>
 	<script src="js/lib/bootstrap.js"></script>
