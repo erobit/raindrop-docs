@@ -8,9 +8,11 @@
 		"js",
 		"index.html"
 	],
-	"load": "js/couch_design_props",
+	"load": "js/views",
+	"modules": ["js/views.js"],
 	"dependencies" : {
 		"attachments": null,
-		"properties": null
+		"properties": null,
+		"modules": null
 	}
 }

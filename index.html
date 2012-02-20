@@ -56,18 +56,21 @@
 			</div>
 		</div>
 		
-		<!-- actions & tags row -->
 		<div class="row">
 			<a data-toggle="modal" href="#myModal" class="btn pull-right"><span class="icon-plus"></span> books</a>
 			<div class="span12">
-				<script id="tags" type="text/x-handlebars-template">
+				<div id="tags"></div>
+				<script id="tags-template" type="text/x-handlebars-template">
 					<div id="groups" class="tab-pane">
 						<div class="tabbable">
 							<ul class="nav nav-pills">
-								<li class="active"><a href="#private" data-toggle="tab">Personal</a></li>
-								<li class=""><a href="#friends" data-toggle="tab">Friends</a></li>
-								<li class=""><a href="#family" data-toggle="tab">Family</a></li>
-								<li><a href="work" data-toggle="tab">Work</a></li>
+								{{#each tags}}
+									{{#if active}}
+										<li class="active"><a href="#{{ title }}" data-toggle="tab">{{ title }}</a></li>
+									{{else}}
+										<li><a href="#{{ title }}" data-toggle="tab">{{ title }}</a></li>
+									{{/if}}
+								{{/each}}
 							</ul>
 						</div>
 					</div>

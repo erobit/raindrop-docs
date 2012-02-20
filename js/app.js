@@ -33,9 +33,24 @@ $(function(){
 		}
 	});
 
-	var Tab = Backbone.Model.extend({});
+	var Tab = Backbone.Model.extend({
+		defaults: {
+		}
+	});
 	var Tabs = Backbone.Collection.extend({
-		model: Tab
+		model: Tab,
+		url: "http://raindrop.iriscouch.com/raindrop/_design/raindrop-docs/_view/get_tabs?group_level=1",
+		parse:function(tabs){
+			var result = [];
+			tabs.rows.forEach(function(tab, i){
+				var tags = [];
+				tab.value.sort().forEach(function(tag){
+					tags.push({ title: tag });
+				});
+				result.push({ title: tab.key, tags: tags });
+			});
+			return result;
+		}
 	});
 	var TabView = Backbone.View.extend({
 		el: $('#tabs'),
@@ -44,22 +59,27 @@ $(function(){
 			
 		},
 		initialize : function() {
-			var tabs = new Tabs;
-			tabs.add([
-				{ title: "Books", active: true },
-				{ title: "Movies", active: false },
-				{ title: "Photos", active: false },
-				{ title: "Misc", active: false }
-			]);
-			this.render(tabs);
+			_.bindAll(this);
+			this.collection.bind("reset", this.render);
 		},
-		render: function(tabs) {
+		render: function() {
 			var template = Handlebars.compile(this.template);
-			var html = template({ tabs: tabs.toJSON() });
+			var html = template({ tabs: this.collection.toJSON() });
 			$(this.el).html(html);
+			this.select_tab(0);
+		},
+		select_tab: function(index) {
+			// set the proper tab to active
+			$(this.el).find('li').eq(index).addClass('active');
+		},
+		render_tags: function(tags) {
+			var template = Handlebars.compile($('#tags-template'));
+			var html = template({ tags: tags });
+			$('#tags').html(html);
 		}
 	});
 
+/*
 	var Tag = Backbone.Model.extend({});
 	var Tags = Backbone.Collection.extend({
 		model: Tag
@@ -76,25 +96,14 @@ $(function(){
 			
 		}
 	});
+*/
 	
-	// Main application view
-	window.AppView = Backbone.View.extend({
-		el: $('#raindrop'),
-		events: {
-			"click form#search button":  "search"
-		},
-		initialize: function() {
-			window.Tabs = new TabView;
-		},
-		render: function() {
-			
-		},
-		search: function() {
-			alert('w00t - backbone event!!!');
-			return false;
-		}
-	});
-	window.App = new AppView;
+	
+	// Setup tabs & rendering
+	var tabs = new Tabs();
+	new TabView({ collection: tabs });
+	tabs.fetch();
+
 	
 	// on initialize - should get/set - db (localStorage)
 	
