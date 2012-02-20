@@ -5,7 +5,7 @@ $(function(){
 		model: Doc
 	});
 	var DocView = Backbone.View.extend({
-		el : $('#docs'),
+		el : $("#docs"),
 		events : {
 			
 		},
@@ -21,7 +21,7 @@ $(function(){
 		model: Doc
 	});
 	var UploadView = Backbone.View.extend({
-		el: $('#uploads'),
+		el: $("#uploads"),
 		events: {
 			
 		},
@@ -53,10 +53,10 @@ $(function(){
 		}
 	});
 	var TabView = Backbone.View.extend({
-		el: $('#tabs'),
-		template: $('#tabs-template').html(),
+		el: $("#tabs"),
+		template: $("#tabs-template").html(),
 		events: {
-			
+			"click a": "tabClick"
 		},
 		initialize : function() {
 			_.bindAll(this);
@@ -69,13 +69,23 @@ $(function(){
 			this.select_tab(0);
 		},
 		select_tab: function(index) {
-			// set the proper tab to active
-			$(this.el).find('li').eq(index).addClass('active');
+			var tab = this.collection.at(index);
+			$(this.el).find("li").removeClass("active").eq(index).addClass("active");
+			this.render_tags(tab);
 		},
-		render_tags: function(tags) {
-			var template = Handlebars.compile($('#tags-template'));
-			var html = template({ tags: tags });
-			$('#tags').html(html);
+		render_tags: function(tab) {
+			var template = Handlebars.compile($("#tags-template").html());
+			var tags = tab.get("tags");
+			var html = template({ tags: tab.get("tags") });
+			$("#tags").html(html);
+			this.select_tag(0);
+		},
+		select_tag: function(index) {
+			$("#tags li").eq(index).addClass("active");
+		},
+		tabClick: function(obj) {
+			var index = $(obj.srcElement.parentElement).index();
+			this.select_tab(index);
 		}
 	});
 

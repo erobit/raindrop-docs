@@ -55,10 +55,9 @@
 				</script>
 			</div>
 		</div>
-		
 		<div class="row">
 			<a data-toggle="modal" href="#myModal" class="btn pull-right"><span class="icon-plus"></span> books</a>
-			<div class="span12">
+			<div class="span11 pull-left">
 				<div id="tags"></div>
 				<script id="tags-template" type="text/x-handlebars-template">
 					<div id="groups" class="tab-pane">
@@ -66,9 +65,9 @@
 							<ul class="nav nav-pills">
 								{{#each tags}}
 									{{#if active}}
-										<li class="active"><a href="#{{ title }}" data-toggle="tab">{{ title }}</a></li>
+										<li class="active"><a href="#" data-toggle="tab">{{ title }}</a></li>
 									{{else}}
-										<li><a href="#{{ title }}" data-toggle="tab">{{ title }}</a></li>
+										<li><a href="#" data-toggle="tab">{{ title }}</a></li>
 									{{/if}}
 								{{/each}}
 							</ul>
@@ -84,12 +83,10 @@
 			<div class="span12">	
 				<h2>Todo</h2>
 				<ul>
-					<li>Add some sample docs so that we can test basic map/reduce</li>
-					<li>Create couchdb map &amp; reduce views to render tabs / tags</li>
-					<li>Configure app initialize to check for localStorage - servername if running from file://</li>
-					<li>Configure app to have a global $.couch.db object hooked up to the proper db</li>
-					<li>Configure model objects to have urls - which map to couchdb views - tabs, tags?key=tab</li>
-					<li>Tags render when tabs change</li>
+					<li><del>Add some sample docs so that we can test basic map/reduce</del></li>
+					<li><del>Create couchdb map &amp; reduce views to render tabs / tags</del></li>
+					<li><del>Configure model objects to have urls - which map to couchdb views - tabs, tags?key=tab</del></li>
+					<li><del>Tags render when tabs change</del></li>
 					<li>Simple meta data - listing for sample docs - cover art</li>
 					<li>Ability to add / upload documents to couch</li>
 				</ul>
