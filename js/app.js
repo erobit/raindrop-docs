@@ -1,38 +1,5 @@
 $(function(){
 	
-	var Doc = Backbone.Model.extend({});
-	var Docs = Backbone.Collection.extend({
-		model: Doc
-	});
-	var DocView = Backbone.View.extend({
-		el : $("#docs"),
-		events : {
-			
-		},
-		initialize : {
-			
-		},
-		render: function() {
-			
-		}
-	});
-	
-	var Uploads = Backbone.Collection.extend({
-		model: Doc
-	});
-	var UploadView = Backbone.View.extend({
-		el: $("#uploads"),
-		events: {
-			
-		},
-		initialize: function() {
-			
-		},
-		render: function() {
-			
-		}
-	});
-
 	var Tab = Backbone.Model.extend({
 		defaults: {
 		}
@@ -82,10 +49,49 @@ $(function(){
 		},
 		select_tag: function(index) {
 			$("#tags li").eq(index).addClass("active");
+			
+			// docs.url = '&startkey=["tab"]&endkey=["tab",{}] || &key=["tab","tag"] - for specific tag'
+			//docs.fetch() - this will automatically re-bind the docView and re-render
 		},
 		tabClick: function(obj) {
 			var index = $(obj.srcElement.parentElement).index();
 			this.select_tab(index);
+		}
+	});
+	
+	var Doc = Backbone.Model.extend({});
+	var Docs = Backbone.Collection.extend({
+		model: Doc
+	});
+	var DocView = Backbone.View.extend({
+		el : $("#docs"),
+		template: $("#docs-template").html(),
+		events : {
+		},
+		initialize : function() {
+			_.bindAll(this);
+			this.collection.bind("reset", this.render);
+		},
+		render: function() {
+			var template = Handlebars.compile(this.template);
+			var html = template({ docs: this.collection.toJSON() });
+			$(this.el).html(html);
+		}
+	});
+	
+	var Uploads = Backbone.Collection.extend({
+		model: Doc
+	});
+	var UploadView = Backbone.View.extend({
+		el: $("#uploads"),
+		events: {
+			
+		},
+		initialize: function() {
+			
+		},
+		render: function() {
+			
 		}
 	});
 
@@ -113,7 +119,10 @@ $(function(){
 	var tabs = new Tabs();
 	new TabView({ collection: tabs });
 	tabs.fetch();
-
+	
+	var docs = new Docs();
+	new DocView({ collection: docs });
+	
 	
 	// on initialize - should get/set - db (localStorage)
 	
