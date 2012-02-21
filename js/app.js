@@ -41,22 +41,29 @@ $(function(){
 			$(this.el).find("li").removeClass("active").eq(index).addClass("active");
 			this.render_tags(tab);
 		},
+		tabClick: function(obj) {
+			var index = $(obj.srcElement.parentElement).index();
+			this.select_tab(index);
+		},
+		/* hack alert - tags should really be nested backbone.js collection */
 		render_tags: function(tab) {
 			var template = Handlebars.compile($("#tags-template").html());
 			var tags = tab.get("tags");
 			var html = template({ tags: tab.get("tags") });
 			$("#tags").html(html);
-			this.select_tag(0);
+			var self = this;
+			$("#tags a").click(function() { 
+				self.select_tag(tab, $(this).parent().index());
+			});
+			this.select_tag(tab, 0);
 		},
-		select_tag: function(index) {
-			$("#tags li").eq(index).addClass("active");
-			
-			// docs.url = '&startkey=["tab"]&endkey=["tab",{}] || &key=["tab","tag"] - for specific tag'
-			//docs.fetch() - this will automatically re-bind the docView and re-render
-		},
-		tabClick: function(obj) {
-			var index = $(obj.srcElement.parentElement).index();
-			this.select_tab(index);
+		select_tag: function(tab, index) {
+			var li = $("#tags li").removeClass('active').eq(index);
+			li.addClass("active");
+			var tab_title = tab.get('title');
+			var tag_title = li.find('a').text();
+			docs.url = '_view//get_docs?key=["' + tab_title + '","' + tag_title + '"]'; //	?startkey=["' + tab_title + '"]&endkey=["' + tab_title + '",{}]'; // || &key=["tab","tag"] - for specific tag'
+			docs.fetch();
 		}
 	});
 	
