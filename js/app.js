@@ -69,7 +69,10 @@ $(function(){
 	
 	var Doc = Backbone.Model.extend({});
 	var Docs = Backbone.Collection.extend({
-		model: Doc
+		model: Doc,
+		parse:function(result){
+			return result.value;
+		}
 	});
 	var DocView = Backbone.View.extend({
 		el : $("#docs"),
