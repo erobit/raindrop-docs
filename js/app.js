@@ -2,11 +2,12 @@ $(function(){
 	
 	var Tab = Backbone.Model.extend({
 		defaults: {
+			
 		}
 	});
 	var Tabs = Backbone.Collection.extend({
 		model: Tab,
-		url: "http://raindrop.iriscouch.com/raindrop/_design/raindrop-docs/_view/get_tabs?group_level=1",
+		url: "_view/get_tabs?group_level=1",
 		parse:function(tabs){
 			var result = [];
 			tabs.rows.forEach(function(tab, i){
