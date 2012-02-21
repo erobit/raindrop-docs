@@ -1,5 +1,5 @@
 {
-	"name": "raindrop-docs",
+	"name": "docs",
 	"version": "2.0.0",
 	"description": "Raindrop docs - A social document sharing app",
 	"attachments": [
@@ -8,8 +8,8 @@
 		"js",
 		"index.html"
 	],
-	"load": "js/views",
-	"modules": ["js/views.js"],
+	"load": "js/exports",
+	"modules": ["js/exports.js"],
 	"dependencies" : {
 		"attachments": null,
 		"properties": null,
