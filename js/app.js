@@ -70,8 +70,13 @@ $(function(){
 	var Doc = Backbone.Model.extend({});
 	var Docs = Backbone.Collection.extend({
 		model: Doc,
-		parse:function(result){
-			return result.value;
+		
+		parse:function(docs){
+			var result = [];
+			docs.rows.forEach(function(doc, i){
+				result.push(doc.value);
+			});
+			return result;
 		}
 	});
 	var DocView = Backbone.View.extend({
