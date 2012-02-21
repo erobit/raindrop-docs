@@ -21,7 +21,7 @@ exports.views = {
 			{
 				if (doc.type == 'doc')
 				{
-					doc.tags.forEach(function (tag) { emit([doc.tab, tag], null); });
+					doc.tags.forEach(function (tag) { emit([doc.tab, tag], doc); });
 				}
 			}
 		}

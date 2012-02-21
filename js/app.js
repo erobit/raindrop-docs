@@ -62,7 +62,7 @@ $(function(){
 			li.addClass("active");
 			var tab_title = tab.get('title');
 			var tag_title = li.find('a').text();
-			docs.url = '_view//get_docs?key=["' + tab_title + '","' + tag_title + '"]'; //	?startkey=["' + tab_title + '"]&endkey=["' + tab_title + '",{}]'; // || &key=["tab","tag"] - for specific tag'
+			docs.url = '_view/get_docs?key=["' + tab_title + '","' + tag_title + '"]'; //	?startkey=["' + tab_title + '"]&endkey=["' + tab_title + '",{}]'; // || &key=["tab","tag"] - for specific tag'
 			docs.fetch();
 		}
 	});
