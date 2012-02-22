@@ -2,7 +2,6 @@ $(function(){
 	
 	var Tab = Backbone.Model.extend({
 		defaults: {
-			
 		}
 	});
 	var Tabs = Backbone.Collection.extend({
@@ -22,17 +21,20 @@ $(function(){
 	});
 	var TabView = Backbone.View.extend({
 		el: $("#tabs"),
-		template: $("#tabs-template").html(),
 		events: {
 			"click a": "tabClick"
 		},
 		initialize : function() {
+			// compile handlebar templates on init
+			this.template = Handlebars.compile($("#tabs-template").html());
+			this.tags_template = Handlebars.compile($("#tags-template").html());
+			// underscore bindAll method
 			_.bindAll(this);
+			// listen for a change in the collection to re-render the view
 			this.collection.bind("reset", this.render);
 		},
 		render: function() {
-			var template = Handlebars.compile(this.template);
-			var html = template({ tabs: this.collection.toJSON() });
+			var html = this.template({ tabs: this.collection.toJSON() });
 			$(this.el).html(html);
 			this.select_tab(0);
 		},
@@ -47,9 +49,8 @@ $(function(){
 		},
 		/* hack alert - tags should really be nested backbone.js collection */
 		render_tags: function(tab) {
-			var template = Handlebars.compile($("#tags-template").html());
 			var tags = tab.get("tags");
-			var html = template({ tags: tab.get("tags") });
+			var html = this.tags_template({ tags: tab.get("tags") });
 			$("#tags").html(html);
 			var self = this;
 			$("#tags a").click(function() { 
@@ -70,7 +71,6 @@ $(function(){
 	var Doc = Backbone.Model.extend({});
 	var Docs = Backbone.Collection.extend({
 		model: Doc,
-		
 		parse:function(docs){
 			var result = [];
 			docs.rows.forEach(function(doc, i){
@@ -81,17 +81,17 @@ $(function(){
 	});
 	var DocView = Backbone.View.extend({
 		el : $("#docs"),
-		template: $("#docs-template").html(),
 		events : {
 		},
 		initialize : function() {
+			// compile handlebars template on init
+			this.template = Handlebars.compile($("#docs-template").html());
 			_.bindAll(this);
 			this.collection.bind("reset", this.render);
 		},
 		render: function() {
 			$(this.el).hide();
-			var template = Handlebars.compile(this.template);
-			var html = template({ docs: this.collection.toJSON() });
+			var html = this.template({ docs: this.collection.toJSON() });
 			$(this.el)
 				.html(html)
 				.fadeIn()
@@ -108,10 +108,11 @@ $(function(){
 			
 		},
 		initialize: function() {
-			
+			this.template = Handlebars.compile($("#uploads-template").html());
 		},
 		render: function() {
-			
+			var html = this.template({ docs: this.collection.toJSON() });
+			$(this.el).html(html);
 		}
 	});
 
