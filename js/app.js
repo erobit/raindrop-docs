@@ -105,10 +105,13 @@ $(function(){
 	var UploadView = Backbone.View.extend({
 		el: $("#uploads"),
 		events: {
-			
+			"click .btn-upload": "toggleUpload"
 		},
 		initialize: function() {
 			this.template = Handlebars.compile($("#uploads-template").html());
+		},
+		toggleUpload: function() {
+			$('#form').toggle();
 		},
 		render: function() {
 			var html = this.template({ docs: this.collection.toJSON() });
@@ -143,6 +146,9 @@ $(function(){
 	
 	var docs = new Docs();
 	new DocView({ collection: docs });
+	
+	var uploads = new Uploads();
+	new UploadView({ collection: uploads });
 	
 	
 	// on initialize - should get/set - db (localStorage)

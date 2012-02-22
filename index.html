@@ -58,8 +58,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<a data-toggle="modal" href="#myModal" class="btn pull-right"><span class="icon-plus"></span> docs</a>
-			<div class="span11 pull-left">
+			<div class="span10">
 				<div id="tags"></div>
 				<script id="tags-template" type="text/x-handlebars-template">
 					<div id="groups" class="tab-pane">
@@ -76,7 +75,32 @@
 						</div>
 					</div>
 				</script>
-				&nbsp;
+			</div>
+			<div id="uploads" class="span2">
+				<a href="#" class="btn btn-upload pull-right"><span class="icon-plus"></span> docs</a>
+			</div>
+		</div>
+			<div class="row">
+			<div class="span12">
+				<div id="form" class="well hide">
+					<h3>Browse to upload files</h3>
+					<input type="file" id="files" name="files[]" multiple />
+					<div id="uploads-list"></div>
+					<script id="uploads-template" type="text/x-handlebars-template">
+						{{#each docs}}
+						<div class="span4">
+							<a href="#">Search for cover</a>
+						</div>
+						<div class="span8">
+							<input id="title" type="text" value="{{ title }}"/>
+							<textarea id="desc">{{ description }}</textarea>
+							// meta data form goes here
+						</div>
+						{{/each}}
+					</script>
+					<a href="#" class="btn" data-dismiss="modal">Close</a>
+		    	<a href="#" class="btn btn-primary">Save</a>
+				</div>
 			</div>
 		</div>
 		
@@ -93,31 +117,6 @@
 					{{/each}}
 				</script>
 		</div>
-	</div>
-	
-	<!-- modal : I would like to remove modals and use content views instead - more realestate -->
-	<div id="myModal" class="modal hide fade">
-	  <div class="modal-header">
-	    <a class="close" data-dismiss="modal">x</a>
-	    <h2>Add documents</h2>
-	  </div>
-	  <div class="modal-body">
-	   	<input type="file" id="files" name="files[]" multiple />
-			<output id="list"></output>
-			<h3>Todo</h3>
-			<ul>
-				<li>Ability to select files from disk</li>
-				<li>Create backbone Doc objects and populate data / cover / url - guuid?</li>
-				<li>Ability to expand each file and add meta data (smart assoc - if cover art is already present with same name as file)</li>
-				<li>Save Doc to db along with data / cover as attachments</li>
-				<li>Show upload status -> progressbars?</li>
-				<li>Add Doc to Docs collection as uploads finish and update ui - cover art/url</li>
-			</ul>
-	  </div>
-	  <div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a>
-	    <a href="#" class="btn btn-primary">Save</a>
-	  </div>
 	</div>
 
 	<script src="js/lib/jquery.js"></script>
