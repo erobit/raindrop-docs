@@ -86,13 +86,9 @@
 				<script id="docs-template" type="text/x-handlebars-template">
 					{{#each docs}}
 					<div class="span2">
-						<img src="../../{{ _id }}/cover.jpeg" width="128" height="200"/>
-						<!--
-						<h4>{{ title }}</h4>
-						<p>
-							{{ description }}
-						</p>
-						-->
+						<a href="#" class="pop" data-content="{{ description }}" title="{{ title }}">
+							<img src="../../{{ _id }}/cover.jpeg"/>
+						</a>
 					</div>
 					{{/each}}
 				</script>

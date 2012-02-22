@@ -92,8 +92,10 @@ $(function(){
 			$(this.el).hide();
 			var template = Handlebars.compile(this.template);
 			var html = template({ docs: this.collection.toJSON() });
-			$(this.el).html(html);
-			$(this.el).fadeIn();
+			$(this.el)
+				.html(html)
+				.fadeIn()
+				.find('a.pop').popover();
 		}
 	});
 	
