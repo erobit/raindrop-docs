@@ -9,8 +9,12 @@ http://raindrop.iriscouch.com/raindrop/_design/docs/index.html
 
 ### Phase I - Categories, tags and docs
 
-* Ability to add / upload docs to couch (auto cover art associations / api integration)
+* Ability to add / upload documents to couch
+* Ability to add attachments to documents
+** The actual document (pdf/epub/.m4v/.webp/.webm/etc..)
+** Cover art
 * Doc viewers for popular types - html5 audio/video
+* Review Doc types/tags model and define actual schemas for types?
 
 ### Phase II - Production urls, security and search
 

@@ -132,6 +132,8 @@ $(function(){
 			
 			// if we are simply uploading photographs, it is a 1:1 mapping
 			// and we simply have to enter the meta-data for the photo
+			var files = {};
+			var images = {};
 			
 			$.each( e.target.files, function(index, file) {
 				var fileReader = new FileReader();
@@ -140,24 +142,26 @@ $(function(){
 						
 						// add a doc to the uploads collection
 						var title = file.name;
-						var dot = file.name.lastIndexOf('.');
-						if(dot>0)
-							title = file.name.substring(0,dot);
-
+						var dot = title.lastIndexOf('.');
+						var ext = "";
+						if(dot>0) {
+							ext = title.substring(dot+1, title.length).toLowerCase();
+							title = title.substring(0,dot);
+						}
 						var doc = new Doc({
 								title: title,
+								description: "",
 								type: file.type,
 								size: file.size,
-								cover : '',
 								contents: e.target.result
 						});
-						uploads.add(doc);
-						
-						// we need to define attachments for documents - so that they 
-						// can easily be uploaded along with a document
-						// i.e. data / cover art should be attachments
-
-					}; 
+						if(f.type.match('image.*')) {
+							images[title] = doc;
+						}
+						else {
+							files[title] = doc;
+						}
+					};
 				})(file);
 		   	fileReader.readAsDataURL(file);
 		  });
