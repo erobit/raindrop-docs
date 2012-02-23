@@ -104,18 +104,66 @@ $(function(){
 	});
 	var UploadView = Backbone.View.extend({
 		el: $("#uploads"),
+		el_view: $("#upload-doc-list"),
 		events: {
 			"click .btn-upload": "toggleUpload"
 		},
 		initialize: function() {
-			this.template = Handlebars.compile($("#uploads-template").html());
+			this.template = Handlebars.compile($("#upload-doc-template").html());
+			_.bindAll(this);
+			this.collection.bind("add", this.render);
+			// not sure how to use event delegates above to bind to id based selectors
+			$('#files').bind('change', this.addDoc);
 		},
 		toggleUpload: function() {
 			$('#form').toggle();
 		},
-		render: function() {
-			var html = this.template({ docs: this.collection.toJSON() });
-			$(this.el).html(html);
+		addDoc: function(e) {
+			// get length, # of files - and ask couchdb for some uuids
+			
+			// the general concept is that someone can simply upload
+			// both cover-art and documents in a single go! 
+			// this will happen for books/movies for example
+			
+			// In this scenario - we have to only create docs for the data,
+			// and then associate the file & cover art as doc _attachments
+			// when saving the doc to couch, we save the doc (without attachments),
+			// then publish/post the _attachments separately using the docid/attachmentGUUID
+			
+			// if we are simply uploading photographs, it is a 1:1 mapping
+			// and we simply have to enter the meta-data for the photo
+			
+			$.each( e.target.files, function(index, file) {
+				var fileReader = new FileReader();
+				fileReader.onload = (function(file) {
+					return function(e) {
+						
+						// add a doc to the uploads collection
+						var title = file.name;
+						var dot = file.name.lastIndexOf('.');
+						if(dot>0)
+							title = file.name.substring(0,dot);
+
+						var doc = new Doc({
+								title: title,
+								type: file.type,
+								size: file.size,
+								cover : '',
+								contents: e.target.result
+						});
+						uploads.add(doc);
+						
+						// we need to define attachments for documents - so that they 
+						// can easily be uploaded along with a document
+						// i.e. data / cover art should be attachments
+
+					}; 
+				})(file);
+		   	fileReader.readAsDataURL(file);
+		  });
+		},
+		render: function(doc) {
+			$(this.el_view).append(this.template(doc.toJSON()));
 		}
 	});
 
@@ -148,32 +196,5 @@ $(function(){
 	new DocView({ collection: docs });
 	
 	var uploads = new Uploads();
-	new UploadView({ collection: uploads });
-	
-	
-	// on initialize - should get/set - db (localStorage)
-	
-	// modal prompt if necessary
-	
-	// if local storage doesn't exist - persist as cookie on localhost?
-	// or no persistence - have to authenticate and provide db every time
-
-
-
-	function uploadFiles(e) {
-		$.each( e.target.files, function(index, file) {
-			var fileReader = new FileReader();
-			fileReader.onload = (function(file) {
-				return function(e) {
-					$('#list').append('<div class="dataurl"><strong>' + file.fileName + '</strong>' + e.target.result + '</div>') 
-					// this sucker should really be modal
-					// the goal is to add a list of uploaded documents and fill out the meta data for each
-					// then to save the documents along with the file data as an attachment to the document!
-				}; 
-			})(file);
-	   	fileReader.readAsDataURL(file);
-	  });
-  }
-
-  $('#files').bind('change', uploadFiles);
+	new UploadView({ collection: uploads });  
 });
