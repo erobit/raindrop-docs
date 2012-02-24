@@ -135,39 +135,62 @@ $(function(){
 			var files = {};
 			var images = {};
 			
-			$.each( e.target.files, function(index, file) {
-				var fileReader = new FileReader();
-				fileReader.onload = (function(file) {
-					return function(e) {
-						
-						// add a doc to the uploads collection
-						var title = file.name;
-						var dot = title.lastIndexOf('.');
-						var ext = "";
-						if(dot>0) {
-							ext = title.substring(dot+1, title.length).toLowerCase();
-							title = title.substring(0,dot);
-						}
-						var doc = new Doc({
-								title: title,
-								description: "",
-								type: file.type,
-								size: file.size,
-								contents: e.target.result
-						});
-						if(f.type.match('image.*')) {
-							images[title] = doc;
-						}
-						else {
-							files[title] = doc;
-						}
+			// store all the docs into file or image dicts
+			var file, title, dot, ext="", doc;
+			for(var i=0; i<e.target.files.length; i++)
+			{
+				file = e.target.files[i];
+				title = file.name;
+				dot = title.lastIndexOf(".");
+				if(dot>0) {
+					ext = title.substring(dot+1, title.length).toLowerCase();
+					title = title.substring(0,dot);
+				}
+				// create document - we'll read the files from disk when we upload
+				doc = new Doc({
+						cid: i,
+						title: title,
+						description: "",
+						file: file
+				});
+				if(file.type.match("image.*")) {
+					images[title] = doc;
+				}
+				else {
+					files[title] = doc;
+				}
+			}
+			
+			// at this point - our dicts are populated - time to associate cover art
+			var image, imageReader, docReader;
+			var self = this;
+			for(key in files) {
+				image = images[key];
+				doc = files[key];
+				if(image) {
+					// read image in and attach as cover
+					imageReader = new FileReader();
+					imageReader.onload = function(e) {
+						doc.set("_cover", e.target.result);
+						self.render_cover(doc.get("cid"), e.target.result);
 					};
-				})(file);
-		   	fileReader.readAsDataURL(file);
-		  });
+				  imageReader.readAsDataURL(image.get("file"));
+				}
+				docReader = new FileReader();
+				docReader.onload = function(e) {
+					doc.set("_data", e.target.result);
+				};
+			  docReader.readAsDataURL(doc.get("file"));
+			
+				// add this document to the uploads collection
+				uploads.add(doc);
+			}
 		},
 		render: function(doc) {
 			$(this.el_view).append(this.template(doc.toJSON()));
+		},
+		render_cover: function(cid, data) {
+			$(this.el_view).find('#cover-'+cid).attr("src", data);
 		}
 	});
 
