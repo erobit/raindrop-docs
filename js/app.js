@@ -116,7 +116,7 @@ $(function(){
 			$('#files').bind('change', this.addDoc);
 		},
 		toggleUpload: function() {
-			$('#form').toggle();
+			$('#form').slideToggle();
 		},
 		addDoc: function(e) {
 			// get length, # of files - and ask couchdb for some uuids
