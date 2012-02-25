@@ -162,21 +162,20 @@ $(function(){
 			}
 			
 			// at this point - our dicts are populated - time to associate cover art
-			var image, imageReader, docReader;
 			var self = this;
-			for(key in files) {
-				image = images[key];
-				doc = files[key];
+			$.each(files, function(key){
+				var image = images[key];
+				var doc = files[key];
 				if(image) {
 					// read image in and attach as cover
-					imageReader = new FileReader();
+					var imageReader = new FileReader();
 					imageReader.onload = function(e) {
 						doc.set("_cover", e.target.result);
 						self.render_cover(doc.get("cid"), e.target.result);
 					};
 				  imageReader.readAsDataURL(image.get("file"));
 				}
-				docReader = new FileReader();
+				var docReader = new FileReader();
 				docReader.onload = function(e) {
 					doc.set("_data", e.target.result);
 				};
@@ -184,7 +183,7 @@ $(function(){
 			
 				// add this document to the uploads collection
 				uploads.add(doc);
-			}
+			});
 		},
 		render: function(doc) {
 			$(this.el_view).append(this.template(doc.toJSON()));

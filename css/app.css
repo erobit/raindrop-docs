@@ -19,3 +19,5 @@ h1 { padding:0 40px 10px 0;}
 
 .clear { clear:both }
 a.pop { display:inline-block }
+textarea { height:140px }
+#form.well { padding: 19px 0 19px 19px; }

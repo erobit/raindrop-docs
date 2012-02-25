@@ -80,9 +80,8 @@
 				<a href="#" class="btn btn-upload pull-right"><span class="icon-plus"></span> docs</a>
 			</div>
 		</div>
-			<div class="row">
-			<div class="span12">
-				<div id="form" class="well hide">
+		<div class="row">
+			<div id="form" class="span12 well hide">
 					<h3>Choose docs to upload</h3>
 					<input type="file" id="files" class="file-upload" name="files[]" multiple />
 					<hr/>
@@ -95,14 +94,17 @@
 						<div class="span4">
 							<label>Title</label>
 							<input id="title" type="text" value="{{ title }}"/>
+							<label>Tags</label>
+							<input id="tags" type="text" value="{{ tags }}"/>
 							<label>Description</label>
 							<textarea id="desc">{{ description }}</textarea>
+							<div>
+				    		<a href="#" class="btn btn-primary">Upload</a>
+								<a href="#" class="btn">Remove</a>
+							</div>
 						</div>
 					</div>
 					</script>
-					<a href="#" class="btn" data-dismiss="modal">Close</a>
-		    	<a href="#" class="btn btn-primary">Save</a>
-				</div>
 			</div>
 		</div>
 		
