@@ -1,5 +1,6 @@
 
 /* couchdb views */
+
 exports.views = {
 	get_tabs: {
 		map: function (doc) {
